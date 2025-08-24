@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaLinkedin, FaGithub, FaDownload, FaCode, FaDatabase, FaCloud, FaAward, FaMapMarkerAlt, FaCalendarAlt, FaExternalLinkAlt, FaPaperPlane, FaUser, FaBriefcase, FaGraduationCap, FaFolder, FaStar } from 'react-icons/fa';
-
+import resumePDF from './assets/Java_resume.pdf';
+import profilePic from './assets/profile.jpg'; // Ensure you have a profile picture in the assets folder
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -118,6 +119,35 @@ const Portfolio = () => {
   ];
 
   const projects = [
+        {
+      name: 'Car Rental System',
+      description: 'Multi-role platform for vehicle inventory and booking management',
+      skills: ['Spring Boot', 'MySQL', 'React', 'Payment Gateway', 'AWS'],
+      highlights: [
+        '🚗 Complete vehicle inventory management system',
+        '💳 Integrated payment gateway for seamless transactions',
+        '📊 Admin dashboards with business intelligence insights',
+        '⚡ High-performance SQL optimization for large datasets',
+        '☁️ Cloud-deployed with automated scaling'
+      ],
+      url: 'https://rentalwhybuy.netlify.app/',
+      featured: true
+    },
+{
+  name: 'Jewelry Showcase',
+  description: 'A modern jewelry catalog featuring curated collections, detailed product information, and high-quality media hosted on AWS.',
+  skills: ['React', 'AWS S3', 'AWS EC2', 'AWS RDS (MySQL)', 'Redis', 'Tailwind CSS'],
+  highlights: [
+    '💎 Elegant product browsing experience with a fully responsive UI',
+    '☁️ Deployed on AWS: static frontend on S3, backend API on EC2, and data persisted in RDS',
+    '🖼️ Jewelry images stored in S3 with references linked in RDS for seamless access',
+    '⚡ Redis caching integrated to deliver faster product load times',
+    '🔐 Secure environment-based configuration for managing keys and credentials'
+  ],
+  url: 'http://dhara-frontend-bucket.s3-website.us-east-2.amazonaws.com/',
+  featured: true
+}
+,
     {
       name: 'Appointment Scheduler',
       description: 'Enterprise-grade microservices system for healthcare booking management',
@@ -128,8 +158,7 @@ const Portfolio = () => {
         '🤖 Automated appointment handling via intelligent chatbot',
         '📊 Real-time monitoring with Grafana dashboards',
         '⚡ Optimized SQL queries for sub-second response times'
-      ],
-      featured: true
+      ]
     },
     {
       name: 'Cruise Management System',
@@ -155,18 +184,6 @@ const Portfolio = () => {
         '⚡ Live synchronization across multiple devices'
       ]
     },
-    {
-      name: 'Car Rental System',
-      description: 'Multi-role platform for vehicle inventory and booking management',
-      skills: ['Spring Boot', 'MySQL', 'React', 'Payment Gateway', 'AWS'],
-      highlights: [
-        '🚗 Complete vehicle inventory management system',
-        '💳 Integrated payment gateway for seamless transactions',
-        '📊 Admin dashboards with business intelligence insights',
-        '⚡ High-performance SQL optimization for large datasets',
-        '☁️ Cloud-deployed with automated scaling'
-      ]
-    }
   ];
 
   const handleContactSubmit = (e) => {
@@ -250,7 +267,7 @@ const Portfolio = () => {
         <div className="container mx-auto px-6 text-center">
           <div className="mb-8">
             <img 
-              src="https://media.licdn.com/dms/image/v2/D4E35AQHRi0ZYxACXaA/profile-framedphoto-shrink_400_400/B4EZisJPbUHEAg-/0/1755234760841?e=1755842400&v=beta&t=NAlFV8a7Z3WyjAUslGFmpj6xxv4LZPMUUSGoDioybgU" 
+              src={profilePic} 
               alt="Dinesh Sathunuri"
               className="w-40 h-40 mx-auto rounded-full border-4 border-gradient-to-r from-blue-400 to-purple-400 shadow-2xl object-cover"
             />
@@ -276,32 +293,32 @@ const Portfolio = () => {
             Experienced in microservices architecture, cloud computing, and modern development practices.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
-            {[
-              { icon: FaEnvelope, label: 'Email', href: 'mailto:dsathunuri@gmail.com' },
-              { icon: FaLinkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/dinesh-sathunuri' },
-              { icon: FaGithub, label: 'GitHub', href: 'https://github.com/dinesh-sathunuri' },
-              { icon: FaDownload, label: 'Resume', href: '/Java_resume.pdf' }
-            ].map((link) => {
-            const Icon = link.icon;
-            const isDownload = link.label === 'Resume';
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  {...(isDownload
-          ? { download: true }      // Adds download attribute for Resume
-          : { target: "_blank", rel: "noopener noreferrer" } // External links
+<div className="flex flex-wrap justify-center gap-6 mb-12">
+  {[
+    { icon: FaEnvelope, label: 'Email', href: 'mailto:dsathunuri@gmail.com' },
+    { icon: FaLinkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/dinesh-sathunuri' },
+    { icon: FaGithub, label: 'GitHub', href: 'https://github.com/dinesh-sathunuri' },
+    { icon: FaDownload, label: 'Resume', href: resumePDF }
+  ].map((link) => {
+    const Icon = link.icon;
+    const isDownload = link.label === 'Resume';
+    return (
+      <a
+        key={link.label}
+        href={link.href}
+        {...(isDownload
+          ? { download: 'Dinesh_Sathunuri_Resume.pdf' } 
+          : { target: "_blank", rel: "noopener noreferrer" }
         )}
-                  className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/30 hover:from-blue-500/30 hover:to-purple-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
-                >
-                  <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-medium">{link.label}</span>
-                  <FaExternalLinkAlt className="w-4 h-4 opacity-70" />
-                </a>
-              );
-            })}
-          </div>
+        className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/30 hover:from-blue-500/30 hover:to-purple-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+      >
+        <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+        <span className="font-medium">{link.label}</span>
+        {!isDownload && <FaExternalLinkAlt className="w-4 h-4 opacity-70" />}
+      </a>
+    );
+  })}
+</div>
           
           <div className="inline-block px-8 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full border border-green-400/30 text-green-400 font-semibold">
             🚀 Open to New Opportunities
@@ -527,8 +544,24 @@ const Portfolio = () => {
                     </div>
                   ))}
                 </div>
+                {project.url && (
+  <div className="mt-6">
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-blue-500/30
+                 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-500/30 hover:to-purple-500/30
+                 hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
+    >
+      <span className="font-medium">Live Demo</span>
+      <FaExternalLinkAlt className="w-4 h-4 opacity-80" />
+    </a>
+  </div>
+)}    
               </div>
             ))}
+            
           </div>
         </div>
       </section>
